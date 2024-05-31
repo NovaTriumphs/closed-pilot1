@@ -454,6 +454,74 @@ EVENTS: dict[int, dict[str, Alert | AlertCallbackType]] = {
       AlertStatus.userPrompt, AlertSize.small,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.prompt, 1.8),
   },
+  
+  EventName.preDriverDistracted: {
+    ET.PERMANENT: Alert(
+      "Pay Attention",
+      "",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1),
+  },
+
+  EventName.promptDriverDistracted: {
+    ET.PERMANENT: Alert(
+      "Pay Attention",
+      "",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1),
+  },
+
+  EventName.driverDistracted: {
+    ET.PERMANENT: Alert(
+      "DISENGAGE IMMEDIATELY",
+      "Driver Distracted",
+      AlertStatus.critical, AlertSize.full,
+      Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.warningImmediate, .1),
+  },
+
+  EventName.preDriverUnresponsive: {
+    ET.PERMANENT: Alert(
+      "Pay Attention",
+      "",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1),
+  },
+
+  EventName.promptDriverUnresponsive: {
+    ET.PERMANENT: Alert(
+      "Pay Attention",
+      "",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1),
+  },
+
+  EventName.driverUnresponsive: {
+    ET.PERMANENT: Alert(
+      "DISENGAGE IMMEDIATELY",
+      "Driver Unresponsive",
+      AlertStatus.critical, AlertSize.full,
+      Priority.HIGH, VisualAlert.steerRequired, AudibleAlert.warningImmediate, .1),
+  },
+
+  EventName.preKeepHandsOnWheel: {
+    ET.WARNING: Alert(
+      "No hands on steering wheel detected",
+      "",
+      AlertStatus.userPrompt, AlertSize.small,
+      Priority.MID, VisualAlert.steerRequired, AudibleAlert.none, .1, alert_rate=0.75),
+  },
+
+  EventName.promptKeepHandsOnWheel: {
+    ET.WARNING: Alert(
+      "HANDS OFF STEERING WHEEL",
+      "Place hands on steering wheel",
+      AlertStatus.critical, AlertSize.mid,
+      Priority.MID, VisualAlert.steerRequired, AudibleAlert.promptDistracted, .1),
+  },
+
+  EventName.keepHandsOnWheel: {
+    ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Driver kept hands off sterring wheel"),
+  },
 
   EventName.manualRestart: {
     ET.WARNING: Alert(
